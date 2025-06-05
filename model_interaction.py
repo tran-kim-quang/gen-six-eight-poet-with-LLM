@@ -1,7 +1,14 @@
 from transformers import pipeline
-pipe = pipeline("text-generation", model=model.model, tokenizer=model.tokenizer, device=model.device)
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
-# Ví dụ sử dụng pipeline
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+model = GPT2LMHeadModel.from_pretrained('meomeo163/luc-bat-poet-model')
+tokenizer = GPT2Tokenizer.from_pretrained('meomeo163/luc-bat-poet-model')
+
+pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, device=device)
+
+
 prompt_text = "Việt Nam anh hùng"
 print(f"\nPrompt: '{prompt_text}'")
 
@@ -16,8 +23,9 @@ try:
         top_p=0.85,    # highest proba of token
         no_repeat_ngram_size=3,
         repetition_penalty=1.15,
-        pad_token_id=model.tokenizer.pad_token_id,
-        eos_token_id=model.tokenizer.eos_token_id,
+        # Access pad_token_id and eos_token_id directly from the tokenizer object
+        pad_token_id=tokenizer.pad_token_id,
+        eos_token_id=tokenizer.eos_token_id,
     )
 
     print(f"\nBài thơ với từ khoá {prompt_text}:")
