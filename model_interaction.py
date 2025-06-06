@@ -1,15 +1,12 @@
 from transformers import pipeline
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
+import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = GPT2LMHeadModel.from_pretrained('meomeo163/luc-bat-poet-model')
-tokenizer = GPT2Tokenizer.from_pretrained('meomeo163/luc-bat-poet-model')
 
-pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, device=device)
+pipe = pipeline("text-generation", model='meomeo163/luc-bat-poet-model', device=device)
 
-
-prompt_text = "Việt Nam anh hùng"
+prompt_text = "Ngẫm hay muôn sự tại trời"
 print(f"\nPrompt: '{prompt_text}'")
 
 try:
