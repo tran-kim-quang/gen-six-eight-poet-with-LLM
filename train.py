@@ -46,7 +46,7 @@ def train_model(model, tokenizer, train_dataset, val_dataset):
         pad_to_multiple_of=8,
     )
     
-    # Cấu hình training arguments đặc biệt cho thơ
+    # training arguments đặc biệt cho thơ
     training_args = TrainingArguments(
         output_dir="./luc-bat-poet-model",
         overwrite_output_dir=True,
@@ -118,10 +118,8 @@ def train_model(model, tokenizer, train_dataset, val_dataset):
     print(f"Max length: {train_dataset.max_length}")
 
     
-    # Bắt đầu training
     trainer.train()
     
-    # Lưu model cuối cùng
     print("\nĐang lưu model...")
     trainer.save_model("./luc-bat-poet")
     tokenizer.save_pretrained("./luc-bat-poet")
