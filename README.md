@@ -6,4 +6,4 @@ Link to Dataset: https://huggingface.co/datasets/truongpdd/vietnamese_poetry
 
 To use this model, run file `model_interaction.py` or follow the link on hugging face. You don't need to setup my code and my environments to test.
 
-Run streamlit: streamlit run app.py
+Run streamlit: `streamlit run app.py`
