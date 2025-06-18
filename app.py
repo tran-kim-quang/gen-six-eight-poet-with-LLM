@@ -55,7 +55,7 @@ if submitted and user_input:
         input_text = f"<|thơ|>{user_input}"
         inputs = tokenizer(input_text, return_tensors="pt")
         
-        # Tạo thơ
+        # Setup tham số tạo thơ
         outputs = model.generate(
             inputs["input_ids"],
             max_length=max_length,
